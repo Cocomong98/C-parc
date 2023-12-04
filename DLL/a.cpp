@@ -31,13 +31,32 @@ struct List
 using pNode = Node*;
 using pList = List*;
 
-// 맨 앞으로 보내는 기능은 push_front => 리스트와 값을 불러옴
+// 헤드를 주고 맨 앞에 끼워넣기
 void push_front(pList p, int value){
-    // 리스트의 제일 앞쪽에 새로운 리스트를 넣고, 
+    // 새 노드를 만들고, 값에 value, next에 현재의 헤드를 넣는다 -> 그리고 그 노드를 리스트의 헤드 노드에 연결한다
     p->head = new Node(value, p->head);
 }
 
-void push_back (pList p, int value) {
-    pNode x = next(p->head);
-    x-> next = new Node{ value, nullptr};
+// 헤드를 주고 맨 뒤에 넣기
+void push_back(pList p, int value) {
+    // 노드 x는 헤드 값을 넣어 실행한 last함수의 결과값 (마지막 노드)이다
+    pNode x = last(p->head);
+    // 새 노드에 값과 next에 nulld을 넣고, 앞전에 찾은 마지막 노드인 x의 next에 넣어 잇는다
+    x->next = new Node{value, nullptr};
+}
+
+void push_back(pList p, int value) {
+    p->tail->next = new Node{value};
+    p->tail = p->tail->next;
+}
+// 첫 노드를 받아 마지막 노드를 반환하는 last
+pNode last(pNode head) {
+    // 받아온 노드 Head를 x에 할당
+    pNode x = head;
+    // x의 다음에 올 노드가 null일 때 까지 (현재 있는 노드가 마지막 노드일때까지) 반복
+    while (x->next!=nullptr)
+        // 노드를 한 칸씩 이동
+        x = x->next;
+    // 찾아낸 마지막 노드를 반환
+    return x;
 }
