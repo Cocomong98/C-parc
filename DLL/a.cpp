@@ -31,23 +31,18 @@ struct List
 using pNode = Node*;
 using pList = List*;
 
-// 헤드를 주고 맨 앞에 끼워넣기
+// 헤드를 주고 맨 앞에 끼워넣기 -> list에 head만 있는 경우
 void push_front(pList p, int value){
     // 새 노드를 만들고, 값에 value, next에 현재의 헤드를 넣는다 -> 그리고 그 노드를 리스트의 헤드 노드에 연결한다
     p->head = new Node(value, p->head);
 }
 
-// 헤드를 주고 맨 뒤에 넣기
+// 헤드를 주고 맨 뒤에 넣기 -> list에 head만 있는 경우
 void push_back(pList p, int value) {
     // 노드 x는 헤드 값을 넣어 실행한 last함수의 결과값 (마지막 노드)이다
     pNode x = last(p->head);
     // 새 노드에 값과 next에 nulld을 넣고, 앞전에 찾은 마지막 노드인 x의 next에 넣어 잇는다
     x->next = new Node{value, nullptr};
-}
-
-void push_back(pList p, int value) {
-    p->tail->next = new Node{value};
-    p->tail = p->tail->next;
 }
 // 첫 노드를 받아 마지막 노드를 반환하는 last
 pNode last(pNode head) {
@@ -59,4 +54,12 @@ pNode last(pNode head) {
         x = x->next;
     // 찾아낸 마지막 노드를 반환
     return x;
+}
+
+// 시간 복잡도를 더 해결한 버전 -> list에 tail도 있는 경우 + last 불필요
+void push_back(pList p, int value) {
+    // 노드의 마지막의 다음을 나타내는 노드 (원래는 nullptr)에 새 노드를 연결하고 값을 할당
+    p->tail->next = new Node{value};
+    // 
+    p->tail = p->tail->next;
 }
