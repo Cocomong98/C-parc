@@ -54,3 +54,11 @@ void erase(pNode x){
     delete x;
 }
 
+// 정해진 노드를 제외하는 함수
+// 이걸 구현하기 위해서 erase와 find를 사용한다
+// find로 찾은 값을 erase하면 될 듯
+void pop(pList p, int value){
+    pNode node = find(p, value);
+    erase(node);
+}
+
