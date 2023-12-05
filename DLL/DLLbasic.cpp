@@ -204,3 +204,5 @@ void push_back(pList p, int value){
 void push(pList p, int value, int z) {
     insert(find(p,z), value);
 }
+
+// test
