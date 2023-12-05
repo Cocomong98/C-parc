@@ -179,10 +179,28 @@ void insert(pNode x, int value) {
     // 새 노드를 만든다
     // 노드의 값은 가져온 value 해당 노드의 prev는 현재 위치한 x값의 prev, next값은 현재 위치한 x
     pNode node = new Node{value, x->prev, x};
-    // =은 오른쪽에서 왼쪽으로 흐르기 때문에 이게 맞음
-    x->prev->next = x->prev = node; 
+    // =은 오른쪽에서 왼쪽으로 흐르기 때문에 이게 맞음. 순서로는
+    // 1) node의 주소를 x->prev에 할당
+    // 2) node의 주소를 x->prev->next에 할당
+    x->prev = x->prev->next = node;
 }
 // 이걸로 대체 가능
 
 /* =========================================================================== */
 
+// 노드의 맨 앞에 추가
+void push_front(pList p, int value) {
+    // insert(pNode x, int value)에서 value는 그대로 사용하고
+    // x는 개별 노드인데 push_front는 리스트 형태이므로 리스트의 맨 앞 노드의 주소를 가져온다
+    insert(begin(p), value);
+}
+
+// 노드의 맨 뒤에 추가
+void push_back(pList p, int value){
+    insert(end(p), value);
+}
+
+// z값을 갖고 있는 노드의 앞에 추가
+void push(pList p, int value, int z) {
+    insert(find(p,z), value);
+}
