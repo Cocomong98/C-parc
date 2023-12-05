@@ -65,12 +65,39 @@ void pop_front(pList p, int value) {
     }
 }
 
-void push_back(pList p, int value) {
-    insert(end(p), value);
+// void push_back(pList p, int value) {
+//     insert(end(p), value);
+// }
+
+// void pop_back(pList p, int value) {
+//     if(!empty(p)) {
+//         erase(end(p));
+//     }
+// }
+
+void erase(pNode x) {
+    x->prev->next = x->next;
+    x->next->prev = x->prev;
+    delete x;
 }
 
-void pop_back(pList p, int value) {
-    if(!empty(p)) {
-        
+// 노드 리스트 중 한 노드를 제거
+void pop(pList p, int value){
+    // p라는 이름의 노드 리스트 중, value값을 갖는 노드를 삭제
+    erase(find(p, value));
+}
+// 이 경우는 지울 값이 tail값일 경우, 노드 리스트가 망가질 위험이 있다
+
+// 개선 버전
+void pop(pList p, int value){
+    // pop할 노드를 find로 찾아서 node라는 포인터에 저장
+    pNode node = find(p, value);
+    // 찾은 node값이 맨 마지막 값일 경우
+    if(node == p->tail) {
+        // 아무 일도 일어나지 않는다
+        return;
     }
+    // 찾은 node값이 맨 마지막 값이 아닐 경우 
+    // 찾은 값을 삭제한다
+    erase(node);
 }
