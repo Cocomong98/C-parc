@@ -59,8 +59,11 @@ void push_front(pList p, int value) {
     insert(begin(p), value);
 }
 
+// 맨 앞 노드 제거
 void pop_front(pList p, int value) {
+    // 비어있지 않으면
     if (!empty(p)) {
+        // 시작 노드 제거
         erase (begin(p));
     }
 }
@@ -80,6 +83,7 @@ void erase(pNode x) {
     x->next->prev = x->prev;
     delete x;
 }
+// 아예 여기서 마지막 노드면 지우지 않게 하기
 
 // 노드 리스트 중 한 노드를 제거
 void pop(pList p, int value){
