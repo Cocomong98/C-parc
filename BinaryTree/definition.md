@@ -34,4 +34,6 @@ CBT에 있는 노드들을 array에 나열할 수 있음 (순차적으로 꽉 �
    - index(4) * 2 + 1 = 9 (8번째 index가 child node)
    - 결과가 전체 노드의 개수보다 크면 오른쪽 child는 없는 것임
 
-element 
+노드 저장을 위해서 필요한 element수 계산 = 2^(level)
+
+CBT이거나 FBT인 경우에는 ARRAY에 넣는 것이 제일 효율적이겠지만, 그렇지 않으면 상당히 비효율적임
