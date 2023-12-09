@@ -4,9 +4,11 @@
 using namespace std;
 
 struct TreeNode {
-    // 
+    // 갖고 있는 데이터
     int key;
+    // 왼쪽 자식 노드
     TreeNode* left;
+    // 오른쪽 자식 노드
     TreeNode* right;
 
     // 생성자: 키 값과 왼쪽, 오른쪽 서브트리의 포인터를 매개변수로 받아 초기화
@@ -111,7 +113,22 @@ bool findpath(tree root, tree x, vector<int>& vec) {
 
 // root의 밑에 있는 주어진 두 개의 tree(node) 값의 가장 가까운 공통된 조상 노드를 찾는 과정
 tree LCA(tree root, tree p, tree q){
+    // root로 시작하는 tree가 비어있으면 없는거니까 null 반환
     if(empty(root)) return nullptr;
+
+    // 받은 수인 p,q가 모두 root의 값보다 크다 -> 현재 두 노드가 오른쪽 서브트리에 있다
+    if(p->key > root->key && q->key > root->key) {
+        // 때문에 root의 위치를 연결된 오른쪽 서브트리로 옮기고 다시 LCA 실행
+        root = LCA(root->right,p,q);
+    }
+    // 아닌 경우 (왼쪽 서브트리)
+    else if(p->key < root->key && q->key < root->key){
+        // root의 위치를 연결된 왼쪽으로 바꾸고 LCA 실행
+        root = LCA(root -> left,p,q);
+    }
+    // 아닌 경우 -> 그때부터 갈라진다 = 지금의 위치가 공통 조상이다
+    // 그래서 마지막으로 옮겨진 root의 위치가 공통 조상이 된다
+    return root;
 }
 
 int main() {
