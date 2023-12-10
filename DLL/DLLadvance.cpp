@@ -193,9 +193,9 @@ void pop_all (pList p, int value) {
 
 // 받은 노드 리스트의 절반 위치의 주소값을 반환하는 함수
 pNode half(pList p) {
-    pNode rabbit = turtle = begin(p);
+    pNode rabbit = begin(p);
     pNode turtle = begin(p);
-    while(rabbit != end(p)) {
+    while(rabbit != end(p) || rabbit != last(p)) {
         rabbit = rabbit->next->next;
         turtle = turtle->next;
     }
