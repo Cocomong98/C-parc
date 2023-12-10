@@ -43,12 +43,20 @@ tree maximunBT (tree node) {
 }
 // 하지만 이 코드에는 문제가 있음 
 
+
+// 여기서의 root는 이미 완성된, 이제부터 분석할 트리 
+// vec는 root의 값을 담을 벡터 (최초에는 비어 있음)
 void levelorder(tree root, vector<int>& vec){
     if(empty(root)) return;
     // 들어온 root가 null이 아니면 바로 queue에 넣음
+
+    // tree값을 담을 queue를 하나 만들고 que라는 이름을 붙임
     queue<tree> que;
-    if (!root) return;
+
+    // queue에 root 값 넣기
     que.push(root);
+
+    // 새 트리를 만들어 둠 
     tree now = nullptr;
 
     // 가져온 queue

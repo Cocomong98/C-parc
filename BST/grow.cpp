@@ -88,7 +88,7 @@ bool contains (tree node, int key){
 
 tree grow(tree node, int key) {
     // 호출 시에 받아온 node가 null이다 = 새로 만든다는 뜻 (그게 root가 될거니까) = 그래서 new
-    if (node == nullptr) return new tree(key);
+    if (node == nullptr) return new TreeNode(key);
 
     // null이 아닐 경우
     // 받아온 key를 현 위치의 key와 비교해서 동작

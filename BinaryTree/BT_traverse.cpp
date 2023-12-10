@@ -46,6 +46,14 @@ void postorder(tree root){
     cout << root -> key;
 }
 
+void preorder(tree root){
+    if (root == nullptr) return;
+
+    cout << root->key;
+    preorder(root->left);
+    preorder(root->right);
+}
+
 /*
 BFS : 너비 기반 탐색
 
