@@ -160,8 +160,12 @@ tree trim(tree node, int key) {
 
         // case 3 : 지울 노드의 자녀 노드가 두 개인 경우
         // case1,2가 아닌 경우 3이므로 else만 사용해도 됨
-        // predesessor : 
-        // successor : 
+        // predesessor : 삭제하려는 노드보다 작은 값 중에서 가장 큰 노드 
+        // 삭제하려는 노드의 왼쪽 자식 트리중 가장 오른쪽에 위치한 노드
+        // successor : 삭제하려는 값보다 가장 큰 값 중 가장 작은 노드
+        // 삭제하려는 노드의 오른쪽 자식 트리 중 가장 왼쪽에 위치한 노드
+
+        //pred와 succ가 필요한 이유는, 삭제하고 그 두개를 찾아서 삭제하기 전 노드에 연결시켜 주어야 하기 때문이다
         else{
             if(height(node -> left) < height(node -> right)){
                 tree suc = succ(node);

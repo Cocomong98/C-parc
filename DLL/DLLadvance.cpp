@@ -136,7 +136,7 @@ void pop(pList p, int value){
     pNode node = find(p, value);
     // 찾은 node값이 맨 마지막 값일 경우
     if(node == p->tail) {
-        // 아무 일도 일어나지 않는다 (ㅅ)
+        // 아무 일도 일어나지 않는다 ('ㅅ')
         return;
     }
     // 찾은 node값이 맨 마지막 값이 아닐 경우 
@@ -181,7 +181,10 @@ void pop_all (pList p, int value) {
     for(pNode x = begin(p); x != end(p); x=x->next) {
         if (x->data == value) {
             // 이게 문제다. erase를 하면 지운 노드의 앞 뒤가 잘릴 수 있어서 pop으로 바꾸는 것이 더 좋음
+            pNode temp = new Node;
+            temp = x->prev;
             erase(p,x);
+            x = temp;
         }
     }
 }
