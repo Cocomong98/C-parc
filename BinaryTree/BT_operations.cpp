@@ -116,16 +116,25 @@ tree LCA(tree root, tree p, tree q){
     // root로 시작하는 tree가 비어있으면 없는거니까 null 반환
     if(empty(root)) return nullptr;
 
+    // case 1
+    // 혹시 지금의 위치가 찾으려는 두 위치와 하나라도 일치 = 지금의 위치가 LCA
+    if (root == p || root == q) return root;
+
+    // case 2
     // 받은 수인 p,q가 모두 root의 값보다 크다 -> 현재 두 노드가 오른쪽 서브트리에 있다
     if(p->key > root->key && q->key > root->key) {
         // 때문에 root의 위치를 연결된 오른쪽 서브트리로 옮기고 다시 LCA 실행
         root = LCA(root->right,p,q);
     }
+
+    // case 3
     // 아닌 경우 (왼쪽 서브트리)
     else if(p->key < root->key && q->key < root->key){
         // root의 위치를 연결된 왼쪽으로 바꾸고 LCA 실행
         root = LCA(root -> left,p,q);
     }
+
+    // result
     // 아닌 경우 -> 그때부터 갈라진다 = 지금의 위치가 공통 조상이다
     // 그래서 마지막으로 옮겨진 root의 위치가 공통 조상이 된다
     return root;
